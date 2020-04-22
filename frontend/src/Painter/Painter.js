@@ -1,4 +1,9 @@
-import React from 'react'
+import React, {useState}  from 'react'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { FaEraser } from 'react-icons/fa';
+import { GrClear } from 'react-icons/gr'
+
 
 var isMouseDown=false;
 var canvas = document.createElement('canvas');
@@ -33,19 +38,6 @@ function getMousePos(canvas, evt) {
         x: evt.clientX - rect.left,
         y: evt.clientY - rect.top
     };
-}
-
-function downloadCanvas(link) {
-    var imgpng = document.getElementById('canvas').toDataURL();
-    console.log(imgpng);
-    var lowQuality = document.getElementById('canvas').toDataURL('image/jpeg', 0.1);
-    console.log(lowQuality)
-    var img = document.createElement('img');
-    img.src=imgpng;
-    img.width = 100;
-    img.height = 100;
-    var imagesdiv = document.getElementById('images')
-    imagesdiv.appendChild(img);
 }
 
 function eraser() {
@@ -94,44 +86,53 @@ const setSize = (e) => {
     document.getElementById('showSize').innerHTML = e.target.value
 }
 
-const painter = () => {
+const Painter = () => {
+    const [show, setShow] = useState(false);
+  
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
-    <div id="sidebar">
-        <div className="colorButtons">
-            <h3>Colour</h3>
-            <input type="color" id="colorpicker"  className="colorpicker" onChange={setColor}/>
-        </div>
-        <div className="colorButtons">
-            <h3>Bg Color</h3>
-            <input type="color" value="#ffffff" id="bgcolorpicker" className="colorpicker" />
-        </div>
+        <div id="sidebar">
+            <div className="colorButtons">
+                <h3>Colour</h3>
+                <input type="color" id="colorpicker"  className="colorpicker" onChange={setColor}/>
+            </div>
+            <div className="colorButtons">
+                <h3>Bg Color</h3>
+                <input type="color" value="#ffffff" id="bgcolorpicker" className="colorpicker" />
+            </div>
 
-        <div className="toolsButtons">
-            <h3>Tools</h3>
-            <button id="eraser" className="btn btn-default" onClick={eraser}><span className="glyphicon glyphicon-erase" style={{backgroundColor: eraserActive && 'blue'}}  aria-hidden="true"></span></button>
-            <button id="clear" className="btn btn-danger"> <span className="glyphicon glyphicon-repeat" aria-hidden="true"></span></button>
-        </div>
+            <div className="toolsButtons">
+                <h3>Tools</h3>
+                <button id="eraser" className={`btn ${eraserActive ? "btn-primary" : "btn-default"}`} onClick={eraser}><FaEraser /></button>
+                <button id="clear" className="btn btn-danger" onClick={createCanvas}> <GrClear /></button>
+            </div>
 
-        <div className="buttonSize">
-            <h3>Size (<span id="showSize">{currentSize}</span>)</h3>
-            <input type="range" min="1" defaultValue={currentSize} max="50" step="1" id="controlSize" onChange={setSize} />
-        </div>
-        <div className="Storage">
-            <h3>Storage</h3>
-            <input type="button" value="Save" className="btn btn-warning" id="save" />
-            <input type="button" value="Load" className="btn btn-warning" id="load" />
-            <input type="button" value="Clear" className="btn btn-warning" id="clearCache" />
-        </div>
-        <div className="extra">
+            <div className="buttonSize">
+                <h3>Size (<span id="showSize">{currentSize}</span>)</h3>
+                <input type="range" min="1" defaultValue={currentSize} max="50" step="1" id="controlSize" onChange={setSize} />
+            </div>
+
             <h3>Extra</h3>
-            <a id="saveToImage" className="btn btn-warning" onClick={downloadCanvas}>Download</a>
-        </div>
-        <div id="images">
-
-        </div>
+            <Button variant="primary" onClick={handleShow}>
+                Show image in modal
+            </Button>
     
-    </div>
-)
+            <Modal show={show} onHide={handleClose} centered animation={false}>
+            <Modal.Header closeButton>
+                <Modal.Title>Time to guess!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <img alt="Your masterpiece" width="400" height="400" src={canvas.toDataURL('image/jpeg', 0.1)}></img>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={handleClose}>
+                    Submit your guess!
+                </Button>
+            </Modal.Footer>
+            </Modal>
+        </div>
+    )
 }
 
-export default painter
+export default Painter
