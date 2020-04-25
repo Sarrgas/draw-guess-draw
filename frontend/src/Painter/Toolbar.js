@@ -9,13 +9,6 @@ const setColor = (e) => {
 
 const setBgColor = (e) => {
     setState('bgColor', e.target.value)
-    // var canvas = document.getElementById("canvas");
-    // var ctx = canvas.getContext("2d");
-    // // Add behind elements.
-    // ctx.globalCompositeOperation = 'destination-over'
-    // // Now draw!
-    // ctx.fillStyle = "blue";
-    // ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 const eraser = () => {

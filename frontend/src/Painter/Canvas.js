@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { getState, setState } from '../Stores/WindowStore'
+import { getState } from '../Stores/WindowStore'
 
 let canvas = {};
 let ctx = {};
