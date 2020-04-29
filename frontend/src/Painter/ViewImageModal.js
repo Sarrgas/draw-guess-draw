@@ -1,8 +1,7 @@
 import React,{useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import {setState} from '../Stores/WindowStore'
-import {getImage} from './Canvas'
+import {getState} from '../Stores/WindowStore'
 
 
 const ViewImageModal = () => {
@@ -10,9 +9,8 @@ const ViewImageModal = () => {
     const [img, setImage] = useState()
   
     const handleClose = () => setShow(false);
-    const handleShow = () => {
-        let img = getImage();
-        setState('currentImage', img);
+    let handleShow = () => {
+        let img = getState('currentImage')
         setImage(img);
         setShow(true);
     }

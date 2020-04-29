@@ -13,17 +13,18 @@ namespace DrawGuessDraw.Api.Controllers
     public class ImageController : ControllerBase
     {
         [HttpPost]
-        public IActionResult PostImage([FromBody] object firstName)
+        public IActionResult PostImage([FromBody] object image)
         {
-            //ImageStorage.AddImage(image);
-            return null;
+            ImageStorage.AddImage(image);
+            return Ok();
         }
 
         [HttpGet]
+        [Route("{index}")]
         public IActionResult GetImage(int index)
         {
             var image = ImageStorage.GetImage(index);
-            return null;
+            return Ok(image);
         }
     }
 }

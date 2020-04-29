@@ -7,14 +7,14 @@ namespace DrawGuessDraw.Api.Storage
 {
     public static class ImageStorage
     {
-        private static readonly List<byte[]> _images = new List<byte[]>();
+        private static readonly List<object> _images = new List<object>();
 
-        public static void AddImage(byte[] image)
+        public static void AddImage(object image)
         {
             _images.Add(image);
         }
 
-        public static byte[] GetImage(int index)
+        public static object GetImage(int index)
         {
             return _images[index];
         }
