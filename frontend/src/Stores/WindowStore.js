@@ -1,8 +1,12 @@
 const initialState = {
+    playerId: 0,
+    playerName: 'Unnamed',
+    roomCode: '',
     paintColor: '#000000',
     paintSize: 5,
     eraserActive: false,
-    bgColor: '#ffffff'
+    bgColor: '#ffffff',
+    currentImage: {},
 }
 
 window.state = initialState;

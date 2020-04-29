@@ -42,6 +42,13 @@ export const getImage = () => {
     return img;
 }
 
+export const clearCanvas = () => {
+    canvas = document.getElementById('canvas2'); //TODO React måste ha ett snyggare sätt än detta?
+    ctx = canvas.getContext("2d");
+    ctx.fillStyle = getState('bgColor');
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
 const Canvas = () => {
     useEffect(() => {
         canvas = document.getElementById('canvas2'); //TODO React måste ha ett snyggare sätt än detta?

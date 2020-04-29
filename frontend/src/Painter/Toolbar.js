@@ -2,6 +2,7 @@ import React from 'react'
 import {getState, setState} from '../Stores/WindowStore'
 import { FaEraser } from 'react-icons/fa';
 import { GrClear } from 'react-icons/gr'
+import { clearCanvas } from './Canvas'
 
 const setColor = (e) => {
     setState('paintColor', e.target.value)
@@ -9,6 +10,7 @@ const setColor = (e) => {
 
 const setBgColor = (e) => {
     setState('bgColor', e.target.value)
+    
 }
 
 const eraser = () => {
@@ -21,20 +23,16 @@ const setSize = (e) => {
     document.getElementById('showSize').innerHTML = e.target.value
 }
 
-const clearCanvas = () => {
-    console.error('Not implemented!');
-}
-
 const Toolbar = () => {
     return (
         <div>
             <div className="colorButtons">
                 <h3>Colour</h3>
-                <input type="color" id="colorpicker" value={getState('paintColor')} className="colorpicker" onChange={setColor}/>
+                <input type="color" id="colorpicker" defaultValue="#000000" className="colorpicker" onChange={setColor}/>
             </div>
             <div className="colorButtons">
                 <h3>Background</h3>
-                <input type="color" id="bgcolorpicker" value={getState('bgColor')} className="colorpicker" onChange={setBgColor}/>
+                <input type="color" id="bgcolorpicker" defaultValue="#ffffff" className="colorpicker" onChange={setBgColor}/>
             </div>
 
             <div className="toolsButtons">
