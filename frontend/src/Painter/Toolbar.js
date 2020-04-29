@@ -3,6 +3,7 @@ import {getState, setState} from '../Stores/WindowStore'
 import { FaEraser } from 'react-icons/fa';
 import { GrClear } from 'react-icons/gr'
 import { clearCanvas } from './Canvas'
+import {getImage, postImage} from '../Network/Network'
 
 const setColor = (e) => {
     setState('paintColor', e.target.value)
@@ -45,6 +46,9 @@ const Toolbar = () => {
                 <h3>Size (<span id="showSize">{getState('paintSize')}</span>)</h3>
                 <input type="range" min="1" defaultValue={getState('paintSize')} max="50" step="1" id="controlSize" onChange={setSize} />
             </div>
+
+            <button id="dummy" onClick={getImage} > Dummy api GET </button>
+            <button id="dummy" onClick={postImage} > Dummy api POST </button>
         </div>
     )
 }
