@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace DrawGuessDraw.Api.Models
 {
-    public class Timeline
+    public class Image : PlayerAction
     {
-        public string OriginalWord { get; set; }
-        public List<Drawing> Drawings { get; set; }
+        public byte[] ImageData { get; set; }
     }
 }

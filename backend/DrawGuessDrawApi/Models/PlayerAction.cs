@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace DrawGuessDraw.Api.Models
 {
-    public class Drawing
+    public abstract class PlayerAction
     {
-        public Image Image { get; set; }
-        public Guess Guess { get; set; }
+        public Player Player { get; set; }
     }
 }

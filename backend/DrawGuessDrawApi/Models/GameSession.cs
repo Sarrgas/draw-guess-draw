@@ -9,6 +9,6 @@ namespace DrawGuessDraw.Api.Models
     {
         public string RoomCode { get; set; }
         public List<Player> Players { get; set; }
-        public List<Timeline> Timelines { get; set; }
+        public List<Rumour> Timelines { get; set; }
     }
 }
