@@ -10,6 +10,10 @@ const apiGetImage = () => {
 }
 
 const apiPostImage = () => {
+    const playerId = document.getElementById('playerid').value
+    const playerName = document.getElementById('playername').value
+    setState('playerId', playerId)
+    setState('playerName', playerName)
     const img = Canvas()
     postImage(img)
 }

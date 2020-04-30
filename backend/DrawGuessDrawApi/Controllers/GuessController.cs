@@ -16,10 +16,10 @@ namespace DrawGuessDraw.Api.Controllers
     {
         [HttpPost]
         [Route("{id}")]
-        public IActionResult PostGuess(int id, GuessRequest guess)
+        public IActionResult PostGuess(int id, Guess guess)
         {
-            var imageModel = new Image { ImageData = ImageStorage.GetImage(id) };
-            var guessModel = new Guess { GuessData = guess.Guess };
+            var imageModel = new Image { ImageData = ImageStorage.GetImage(id), Player = guess.Player };
+            var guessModel = new Guess { GuessData = guess.GuessData, Player = guess.Player };
             var drawingModel = new Drawing { Guess = guessModel, Image = imageModel };
             DrawingStorage.AddDrawing(drawingModel);
             return Ok();

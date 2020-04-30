@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import {getState} from '../Stores/WindowStore'
+import {getState, setState} from '../Stores/WindowStore'
 import {postGuess} from '../Network/Network'
 
 
@@ -12,6 +12,10 @@ const ViewImageModal = () => {
     const submitGuess = () => {
         const guess = document.getElementById('guess').value
         const imgid = document.getElementById('number').value
+        const playerId = document.getElementById('playerid').value
+        const playerName = document.getElementById('playername').value
+        setState('playerId', playerId)
+        setState('playerName', playerName)
         postGuess(imgid, guess)
         setShow(false);
     }

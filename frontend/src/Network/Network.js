@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setState } from '../Stores/WindowStore'
+import { setState, getState } from '../Stores/WindowStore'
 
 const useLocalServer = true;
 
@@ -9,7 +9,7 @@ export const getImage = (id) => {
     axios.get(`${rootUrl}/api/image/${id}`)
         .then(function (response) {
             console.log(response.data);
-            setState('currentImage', response.data.image)
+            setState('currentImage', response.data)
             return response.data
         })
         .catch(function (error) {
@@ -17,8 +17,12 @@ export const getImage = (id) => {
         })
 }
 
-export const postImage = (image) => {
-    axios.post(`${rootUrl}/api/image`, {image})
+export const postImage = (imageData) => {
+    const player = {
+        id: parseInt(getState('playerId')),
+        name: getState('playerName')
+    }
+    axios.post(`${rootUrl}/api/image`, {imageData, player})
         .then(function (response) {
             console.log(response);
         })
@@ -27,8 +31,12 @@ export const postImage = (image) => {
         });
 }
 
-export const postGuess = (imgId, guess) => {
-    axios.post(`${rootUrl}/api/guess/${imgId}`, {guess})
+export const postGuess = (imgId, guessData) => {
+    const player = {
+        id: parseInt(getState('playerId')),
+        name: getState('playerName')
+    }
+    axios.post(`${rootUrl}/api/guess/${imgId}`, {guessData, player})
         .then(function (response) {
             console.log(response);
         })
