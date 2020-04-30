@@ -7,6 +7,6 @@ namespace DrawGuessDraw.Api.Models
 {
     public class Image : PlayerAction
     {
-        public byte[] ImageData { get; set; }
+        public object ImageData { get; set; }
     }
 }

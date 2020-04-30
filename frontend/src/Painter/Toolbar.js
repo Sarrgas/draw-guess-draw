@@ -46,9 +46,6 @@ const Toolbar = () => {
                 <h3>Size (<span id="showSize">{getState('paintSize')}</span>)</h3>
                 <input type="range" min="1" defaultValue={getState('paintSize')} max="50" step="1" id="controlSize" onChange={setSize} />
             </div>
-
-            <button id="dummy" onClick={getImage} > Dummy api GET </button>
-            <button id="dummy" onClick={postImage} > Dummy api POST </button>
         </div>
     )
 }
