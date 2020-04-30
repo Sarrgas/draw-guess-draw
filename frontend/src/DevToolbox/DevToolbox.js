@@ -17,15 +17,26 @@ const apiPostImage = () => {
 const DevToolbox = () => {
     return (
         <div> 
-            <div>
-                <input type="number" id="number"></input>
-                <button id="dummy" onClick={apiGetImage} > Dummy api GET </button>
+            <div style={{width: '250px', display: 'inline-block', border: '1px solid black', padding: '5px'}}>
+                <h4>Session handlers</h4>
+                <label for="roomcode" style={{display: 'inline-block'}}>Room code:</label>
+                <input type="text" id="roomcode" style={{display: 'inline-block', width: '100px'}}></input>
             </div>
-            <div>
-                <input type="text" id="playername" defaultValue="Player name"></input>
-                <input type="number" id="playerid" defaultValue="0"></input>
+            <div style={{width: '250px', display: 'inline-block', border: '1px solid black', padding: '5px'}}>
+                <h4>Image handlers</h4>
+                <label for="number" style={{display: 'inline-block'}}>Image id:</label>
+                <input type="number" id="number" style={{display: 'inline-block', width: '100px'}}></input>
+                <button id="dummy" onClick={apiGetImage} style={{width: '150px'}} > Api GET Image </button>
+                <button id="dummy" onClick={apiPostImage} style={{width: '150px'}} > Api POST Image </button>
             </div>
-            <button id="dummy" onClick={apiPostImage} > Dummy api POST </button>
+            <div style={{width: '250px', display: 'inline-block', border: '1px solid black', padding: '5px'}}>
+                <h4>Player handlers</h4>
+                <label for="number" style={{display: 'inline-block'}}>Player name: </label>
+                <input type="text" style={{display: 'inline-block', width: '130px'}} id="playername" defaultValue="Knugen"></input>
+                <label for="number">Player id: </label>
+                <input type="number" style={{display: 'inline-block', width: '130px'}} id="playerid" defaultValue="0"></input>
+            </div>
+           
         </div>
     )
 }
