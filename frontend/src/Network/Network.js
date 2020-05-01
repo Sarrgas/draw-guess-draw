@@ -10,16 +10,18 @@ const getPlayerData = () => {
 }
 
 export const getImage = (id) => {
-    const img = api.getImage(id)
-    return img
+    return api.getImage(id).then((img) => {
+        setState('currentImage', img)
+        return img
+    })
 }
 
 export const postImage = (imageData) => {
     const playerData = getPlayerData()
-    api.postImage(imageData, playerData)
+    return api.postImage(imageData, playerData)
 }
 
 export const postGuess = (imgId, guessData) => {
     const playerData = getPlayerData()
-    api.postGuess(imgId, guessData, playerData)
+    return api.postGuess(imgId, guessData, playerData)
 }

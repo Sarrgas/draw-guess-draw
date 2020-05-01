@@ -3,9 +3,9 @@ import {getImage, postImage} from '../Network/Network'
 import {setState} from '../Stores/WindowStore'
 import {getImage as Canvas} from '../Painter/Canvas'
 
-const apiGetImage = () => {
+const apiGetImage = async () => {
     const num = document.getElementById('number').value
-    getImage(num)
+    await getImage(num)
 }
 
 const apiPostImage = () => {
