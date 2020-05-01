@@ -5,15 +5,16 @@ import {getImage as Canvas} from '../Painter/Canvas'
 
 const apiGetImage = () => {
     const num = document.getElementById('number').value
-    const img = getImage(num)
-    setState('currentImage', img)
+    getImage(num)
 }
 
 const apiPostImage = () => {
     const playerId = document.getElementById('playerid').value
     const playerName = document.getElementById('playername').value
+    const roomcode = document.getElementById('roomcode').value
     setState('playerId', playerId)
     setState('playerName', playerName)
+    setState('roomCode', roomcode)
     const img = Canvas()
     postImage(img)
 }
@@ -24,7 +25,7 @@ const DevToolbox = () => {
             <div style={{width: '250px', display: 'inline-block', border: '1px solid black', padding: '5px'}}>
                 <h4>Session handlers</h4>
                 <label for="roomcode" style={{display: 'inline-block'}}>Room code:</label>
-                <input type="text" id="roomcode" style={{display: 'inline-block', width: '100px'}}></input>
+                <input type="text" id="roomcode" defaultValue="abc123" style={{display: 'inline-block', width: '100px'}}></input>
             </div>
             <div style={{width: '250px', display: 'inline-block', border: '1px solid black', padding: '5px'}}>
                 <h4>Image handlers</h4>

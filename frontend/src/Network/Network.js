@@ -1,46 +1,25 @@
-import axios from 'axios'
 import { setState, getState } from '../Stores/WindowStore'
+import * as api from './Api'
 
-const useLocalServer = true;
-
-const rootUrl = useLocalServer ? 'https://localhost:44342' : 'https://heroku-nånting'
+const getPlayerData = () => {
+    return {
+        id: parseInt(getState('playerId')),
+        name: getState('playerName'),
+        roomCode: getState('roomCode')
+    }
+}
 
 export const getImage = (id) => {
-    axios.get(`${rootUrl}/api/image/${id}`)
-        .then(function (response) {
-            console.log(response.data);
-            setState('currentImage', response.data)
-            return response.data
-        })
-        .catch(function (error) {
-            console.error(error);
-        })
+    const img = api.getImage(id)
+    return img
 }
 
 export const postImage = (imageData) => {
-    const player = {
-        id: parseInt(getState('playerId')),
-        name: getState('playerName')
-    }
-    axios.post(`${rootUrl}/api/image`, {imageData, player})
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.error(error);
-        });
+    const playerData = getPlayerData()
+    api.postImage(imageData, playerData)
 }
 
 export const postGuess = (imgId, guessData) => {
-    const player = {
-        id: parseInt(getState('playerId')),
-        name: getState('playerName')
-    }
-    axios.post(`${rootUrl}/api/guess/${imgId}`, {guessData, player})
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.error(error);
-        });
+    const playerData = getPlayerData()
+    api.postGuess(imgId, guessData, playerData)
 }

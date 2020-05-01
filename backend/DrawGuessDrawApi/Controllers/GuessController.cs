@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DrawGuessDraw.Api.Models;
-using DrawGuessDraw.Api.Models.RequestModels;
 using DrawGuessDraw.Api.Storage;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
