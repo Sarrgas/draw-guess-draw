@@ -31,7 +31,7 @@ namespace DrawGuessDrawApi
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+                                      builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
                                   });
             });
             services.AddControllers();

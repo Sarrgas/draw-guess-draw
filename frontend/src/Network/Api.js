@@ -1,11 +1,10 @@
 import axios from 'axios'
 
 const useLocalServer = true;
-
 const rootUrl = useLocalServer ? 'https://localhost:44342' : 'https://heroku-nånting'
 
 export const postImage = (imageData, player) => {
-    return axios.post(`${rootUrl}/api/image`, {imageData, player})
+    return axios.post(`${rootUrl}/api/image`, {imageData, player},{withCredentials: true})
         .then(function (response) {
             return response
         })
@@ -15,7 +14,7 @@ export const postImage = (imageData, player) => {
 }
 
 export const getImage = (id) => {
-    return axios.get(`${rootUrl}/api/image/${id}`)
+    return axios.get(`${rootUrl}/api/image/${id}`,{withCredentials: true})
         .then(function (response) {
             return response.data
         })
@@ -26,7 +25,7 @@ export const getImage = (id) => {
 
 
 export const postGuess = (imgId, guessData, player) => {
-    return axios.post(`${rootUrl}/api/guess/${imgId}`, {guessData, player})
+    return axios.post(`${rootUrl}/api/guess/${imgId}`, {guessData, player},{withCredentials: true})
         .then(function (response) {
             return response
         })

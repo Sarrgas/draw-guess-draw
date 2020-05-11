@@ -16,6 +16,8 @@ namespace DrawGuessDraw.Api.Controllers
         [HttpPost]
         public IActionResult PostImage([FromBody] Image image)
         {
+            var playerInfo = Utils.CookieUtils.GetPlayerInfoFromRequest(Request);
+
             ImageStorage.AddImage(image);
             return Ok();
         }
@@ -24,6 +26,8 @@ namespace DrawGuessDraw.Api.Controllers
         [Route("{index}")]
         public IActionResult GetImage(int index)
         {
+            var playerInfo = Utils.CookieUtils.GetPlayerInfoFromRequest(Request);
+
             var image = ImageStorage.GetImage(index);
             return Ok(image);
         }

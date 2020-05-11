@@ -17,6 +17,8 @@ namespace DrawGuessDraw.Api.Controllers
         [Route("{id}")]
         public IActionResult PostGuess(int id, Guess guess)
         {
+            var playerInfo = Utils.CookieUtils.GetPlayerInfoFromRequest(Request);
+
             var imageModel = new Image { ImageData = ImageStorage.GetImage(id), Player = guess.Player };
             var guessModel = new Guess { GuessData = guess.GuessData, Player = guess.Player };
             var drawingModel = new Drawing { Guess = guessModel, Image = imageModel };
